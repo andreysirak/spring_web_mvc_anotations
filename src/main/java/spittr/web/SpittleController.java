@@ -36,7 +36,7 @@ public class SpittleController {
 //	}
 	
 	
-	//page 150
+	//page 150 Basic one was the first to use 
 //	@RequestMapping(method = RequestMethod.GET)
 //	public List<Spittle> spittles(@RequestParam("max") long max, @RequestParam("count") int count) {
 //		return spittleRepository.findSpittles(max, count);
@@ -56,6 +56,7 @@ public class SpittleController {
 //		return "spittle";
 //	}
 	
+	//used to get spittle by path value and not querry parm
 	@RequestMapping(value = "/{spittleId}", method = RequestMethod.GET)
 	public String spittle(@PathVariable long spittleId, Model model) {
 		model.addAttribute(spittleRepository.findOne(spittleId));
