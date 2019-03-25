@@ -1,16 +1,19 @@
 package spittr.web;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import spittr.Spittle;
+
 import spittr.data.SpittleRepository;
 
 @Controller
@@ -59,8 +62,28 @@ public class SpittleController {
 	//used to get spittle by path value and not querry parm
 	@RequestMapping(value = "/{spittleId}", method = RequestMethod.GET)
 	public String spittle(@PathVariable long spittleId, Model model) {
-		model.addAttribute(spittleRepository.findOne(spittleId));
+		Spittle spittle = spittleRepository.findOne(spittleId);
+		if (spittle == null) {
+			throw new SpittleNotFoundException();
+			}
+		model.addAttribute(spittle);
 		return "spittle";
+	}
+	//listing 7.9 page 211 the exception is being handled in method below 
+	//TODO: Implement SpitterForm but why isn't Spittle class enough,
+	//and why is Model class passed as arg coz we are not putting anything in model here?????
+//	@RequestMapping(method = RequestMethod.POST)
+//	
+//	public String saveSpittle(SpittleForm form, Model model) {
+//		spittleRepository
+//				.save(new Spittle(null, form.getMessage(), new Date(), form.getLongitude(), form.getLatitude()));
+//		return "redirect:/spittles";
+//
+//	}
+
+	@ExceptionHandler(DuplicateSpittleException.class)
+	public String handleDuplicateSpittle() {
+		return "error/duplicate";
 	}
 
 }

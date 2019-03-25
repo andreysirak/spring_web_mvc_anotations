@@ -24,7 +24,16 @@ public class Spittle {
 		this.latitude = latitude;
 	}
 
-	public long getId() {
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	
+	public Double getLongitude() {
+		return longitude;
+	}	
+
+	public Long getId() {
 		return id;
 	}
 
@@ -36,13 +45,11 @@ public class Spittle {
 		return time;
 	}
 
-	public Double getLongitude() {
-		return longitude;
-	}
 
-	public Double getLatitude() {
-		return latitude;
-	}
+	
+	
+	
+	
 
 //	@Override
 //	public boolean equals(Object that) {

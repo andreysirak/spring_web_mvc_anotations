@@ -24,6 +24,12 @@ public class SpittleRepositoryImpl implements SpittleRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void save(Spittle spittle) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }
