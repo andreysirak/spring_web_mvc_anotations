@@ -67,7 +67,7 @@ public class SpitterController {
 //			
 //			e.printStackTrace();
 //		}
-		System.out.println(spitter.toString());
+		System.out.println(spitter.toString());		
 		spitterRepository.save(spitter);		
 		return "redirect:/spitter/" + spitter.getUsername();
 	}
